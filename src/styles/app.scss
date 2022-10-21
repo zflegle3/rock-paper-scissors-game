@@ -1,0 +1,121 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	// font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+    font-size: 10px;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+
+$bg-main-a: hsl(214, 47%, 23%);
+$bg-main-b: hsl(237, 49%, 15%);
+$bg-modal: rgba(0, 0, 0, 0.45);
+
+$scissors: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
+$paper: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
+$rock: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
+$lizard: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
+$spock: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+
+$text-dk: hsl(229, 25%, 31%);
+$text-lt: hsl(229, 64%, 46%);
+$outline: hsl(217, 16%, 45%);
+
+
+.App {
+    height: 100vh;
+    width: 100vw;
+
+    background: radial-gradient(circle at top, $bg-main-a, $bg-main-b);
+}
+
+.modal-background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg-modal;
+
+    .modal-content {
+        background-color: #ffffff;
+        padding: 3rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-width: 42rem;
+
+        .rules-header {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 4rem;
+
+            p {
+                font-size: 3.5rem;
+                color: $text-dk;
+            }
+
+            svg {
+                cursor: pointer;
+                margin: 0.5rem;
+            }
+        }
+    
+    }
+
+
+
+
+}
+
+
