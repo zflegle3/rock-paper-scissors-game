@@ -9,7 +9,7 @@ import { useState } from 'react';
 function App() {
 
   const [rulesDisplay, setRulesDisplay] = useState(false);
-  const [score, setScore] = useState(12);
+  const [score, setScore] = useState(0);
   const [step, setStep] = useState(0);
 
   const showRules = () => {
@@ -19,6 +19,12 @@ function App() {
 
   const hideRules = () => {
     setRulesDisplay(false);
+  }
+
+  const updateScore = (gameResult) => {
+    let scoreTemp = score;
+    scoreTemp += gameResult;
+    setScore(scoreTemp);
   }
 
   return (
@@ -31,7 +37,7 @@ function App() {
         </div>
       </header>
 
-      <Game step={step}/>
+      <Game step={step} updateScore={updateScore}/>
 
       <Footer showRules={showRules}/>
       <RulesModal rulesDisplay={rulesDisplay} hideRules={hideRules}/>
