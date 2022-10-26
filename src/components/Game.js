@@ -8,15 +8,10 @@ import { useState } from 'react';
 
 function Game(props) {
     //props.step
+    //props.setStep
     //props.updateScore();
     const [compPicks, setCompPicks] = useState(["rock","paper","scissors"]);
-
-
-
-    console.log(props.step);
-
-
-
+    const [gameResult, setGameResult] = useState([0,"player selection","computer selection"]);
 
 
     const rockIn = (e) => {
@@ -35,11 +30,15 @@ function Game(props) {
     }
 
     const playTurn = (playerPick) => {
+        //create random computer pick
         let compPick = getCompPick();
-        console.log(compPick);
+        //compare picks and return score
         let gameScore = comparePicks(playerPick,compPick);
         console.log(gameScore,playerPick,compPick);
         props.updateScore(gameScore);
+        //set game results for display
+        setGameResult([gameScore,playerPick,compPick]);
+        props.setStep(false);
     }
 
     const getCompPick = () => {
@@ -80,9 +79,14 @@ function Game(props) {
           }
     }
 
+    const playAgain = () => {
+        props.setStep(true);
+    }
 
 
-    if (props.step === 0) {
+
+    console.log(gameResult);
+    if (props.step) {
         return (
             <div className="game-container">
                 <div className="game-content">
@@ -100,10 +104,89 @@ function Game(props) {
             </div>
 
         );
-    } else if (props.step === 1)
-        return (
-            <div className="game-container">Game Over</div>
-        );
+    } else
+        if (gameResult[0] > 0) {
+            //win
+            return (
+                <div className="game-container">
+                    <div className="result-content">
+                        <div className="player-container">
+                            <div id={gameResult[1]} className="player-select">
+                                {/* <PaperSvg /> */}
+                            </div>
+                            <p>YOU PICKED</p>
+                        </div>
+
+                        <div className="player-container">
+                            <div id={gameResult[2]} className="comp-select">
+                                {/* <RockSvg /> */}
+                            </div>
+                            <p>THE HOUSE PICKED</p>
+                        </div>
+                    </div>
+                    
+                    <div className="game-status">
+                        <h1>YOU WIN</h1>
+                        <button onClick={playAgain}>PLAY AGAIN</button>
+                    </div>
+                    
+                </div>
+            );
+        } else if (gameResult[0] < 0) {
+            //loss
+            return (
+                <div className="game-container">
+                    <div className="result-content">
+                        <div className="player-container">
+                            <div id={gameResult[1]} className="player-select">
+                                {/* <PaperSvg /> */}
+                            </div>
+                            <p>YOU PICKED</p>
+                        </div>
+
+                        <div className="player-container">
+                            <div id={gameResult[2]} className="comp-select">
+                                {/* <RockSvg /> */}
+                            </div>
+                            <p>THE HOUSE PICKED</p>
+                        </div>
+                    </div>
+                    
+                    <div className="game-status">
+                        <h1>YOU LOSE</h1>
+                        <button onClick={playAgain}>PLAY AGAIN</button>
+                    </div>
+                    
+                </div>
+            );
+        } else {
+            //tie
+            return (
+                <div className="game-container">
+                    <div className="result-content">
+                        <div className="player-container">
+                            <div id={gameResult[1]} className="player-select">
+                                {/* <PaperSvg /> */}
+                            </div>
+                            <p>YOU PICKED</p>
+                        </div>
+
+                        <div className="player-container">
+                            <div id={gameResult[2]} className="comp-select">
+                                {/* <RockSvg /> */}
+                            </div>
+                            <p>THE HOUSE PICKED</p>
+                        </div>
+                    </div>
+                    
+                    <div className="game-status">
+                        <h1>YOU TIE</h1>
+                        <button onClick={playAgain}>PLAY AGAIN</button>
+                    </div>
+                    
+                </div>
+            );
+        }
   }
   
   export default Game;

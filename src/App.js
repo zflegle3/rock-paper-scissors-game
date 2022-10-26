@@ -10,7 +10,7 @@ function App() {
 
   const [rulesDisplay, setRulesDisplay] = useState(false);
   const [score, setScore] = useState(0);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(true);
 
   const showRules = () => {
     console.log("show rules");
@@ -37,7 +37,7 @@ function App() {
         </div>
       </header>
 
-      <Game step={step} updateScore={updateScore}/>
+      <Game step={step} setStep={setStep} updateScore={updateScore}/>
 
       <Footer showRules={showRules}/>
       <RulesModal rulesDisplay={rulesDisplay} hideRules={hideRules}/>

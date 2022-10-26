@@ -289,4 +289,89 @@ footer {
 
 }
 
+.result-content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-bottom: 6rem;
+
+    .player-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        div {
+            height: 12rem;
+            width: 12rem;
+            border-radius: $button-d;
+            background: #ffffff;
+            z-index: 1;
+    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 2.5rem;
+            background-position: center;
+            background-size: auto;
+            background-repeat: no-repeat;
+    
+            svg {
+                scale: 0.9;
+            }
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        #rock {
+            border: 12px solid $rock-b;
+            box-shadow: 0px 6px $rock-a;
+            background-image: url(../images/icon-rock.svg);
+        }
+
+        #paper {
+            border: 12px solid $paper-b;
+            box-shadow: 0px 6px $paper-a;
+            background-image: url(../images/icon-paper.svg);
+        }
+
+        #scissors {
+            border: 12px solid $scissors-b;
+            box-shadow: 0px 6px $scissors-a;
+            background-image: url(../images/icon-scissors.svg);
+
+        }
+    }
+
+}
+
+.game-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 4.5rem;
+        color: #ffffff;
+        padding-bottom: 2rem;
+        letter-spacing: 0.5rem;
+    }
+
+    button {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.2rem;
+        padding: 1.2rem 5rem;
+        border-radius: 1rem;
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+    }
+}
+
 
