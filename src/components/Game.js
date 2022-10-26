@@ -89,16 +89,22 @@ function Game(props) {
 
     useEffect(() => {
         let vw = window.screen.width;
+        let vh = window.screen.height;
         console.log(vw);
         if (!props.step) {
             console.log("hello");
-            gsap.from(".player-select", {x: -vw, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
-            gsap.from(".comp-select", {x: vw, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)" });
-            gsap.from(".game-status", {y: 100, opacity: 0, duration: 1, delay: 1.5 });
-            gsap.fromTo(".pulse-1", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1});
-            gsap.fromTo(".pulse-2", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5});
-            gsap.fromTo(".pulse-3", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2});
-            gsap.fromTo(".pulse-4", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5});
+            //Player & Computer Selections
+            gsap.fromTo(".player-select", {x: -vw }, {x: 0, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
+            gsap.fromTo(".comp-select", {x: vw }, {x: 0, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)"});
+            //Game Results
+            gsap.fromTo(".game-status", {opacity: 0, }, {y: 0, opacity: 1, duration: 1, delay: 1.5});
+            if (gameResult[0] !== 0) {
+            //Winner Pulse Background
+                gsap.fromTo(".pulse-1", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5});
+                gsap.fromTo(".pulse-2", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2});
+                gsap.fromTo(".pulse-3", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5});
+                gsap.fromTo(".pulse-4", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 3});
+            }
         }
 
       },[props.step]);

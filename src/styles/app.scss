@@ -80,6 +80,7 @@ $button-d: 20rem;
     justify-content: flex-start;
     align-items: center;
     padding: 2.5rem;
+    overflow: hidden;
 
 
     background: radial-gradient(circle at top, $bg-main-a, $bg-main-b);
@@ -392,6 +393,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    // transform: translate(100vw);
+    opacity: 0;
 
     h1 {
         font-size: 4.5rem;
