@@ -24,6 +24,7 @@ function App() {
   const updateScore = (gameResult) => {
     let scoreTemp = score;
     scoreTemp += gameResult;
+    console.log(scoreTemp,"new score");
     setScore(scoreTemp);
   }
 

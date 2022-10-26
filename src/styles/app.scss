@@ -66,6 +66,8 @@ $text-dk: hsl(229, 25%, 31%);
 $text-lt: #ffffff;
 $text-sub: hsl(229, 64%, 46%);
 $outline: hsl(217, 16%, 45%);
+$shade-main: rgba(0, 0, 0, 0.15);
+$pulse-main: rgba(255, 255, 255, 0.15);
 
 $button-d: 20rem;
 
@@ -175,10 +177,12 @@ header {
         border-radius: $button-d;
         background: #ffffff;
         z-index: 1;
-
+        cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: inset 0 0 10px #f8a100;
+        transition: all 0.3s;
 
         svg {
             scale: 0.9;
@@ -190,14 +194,14 @@ header {
         top: -10%;
         left: 0px;
         border: 12px solid $paper-b;
-        box-shadow: 0px 6px $paper-a;
+        box-shadow: 0px 6px $paper-a, inset 0px 5px $shade-main;
     }
 
     #scissors {
         top: -10%;
         right: 0px;
         border: 12px solid $scissors-b;
-        box-shadow: 0px 6px $scissors-a;
+        box-shadow: 0px 6px $scissors-a, inset 0px 5px $shade-main;
     }
 
     #rock {
@@ -207,7 +211,13 @@ header {
         margin-right: auto; 
         // right: 0px;
         border: 12px solid $rock-b;
-        box-shadow: 0px 6px $rock-a;
+        box-shadow: 0px 6px $rock-a, inset 0px 5px $shade-main;
+    }
+
+    #paper:active, #scissors:active, #rock:active {
+        transform: translateY(0.6rem);
+        box-shadow: 0px 0px $paper-a;
+        transition: all 0.3s;
     }
 
     svg {
@@ -221,7 +231,6 @@ footer {
     display: flex;
     justify-content: center;
 
-
     button {
         font-size: 1.5rem;
         letter-spacing: 0.3rem;
@@ -230,8 +239,8 @@ footer {
         border: 1px solid white;
         background-color: transparent;
         color: #ffffff;
+        cursor: pointer;
     }
-
 
 }
 
@@ -295,14 +304,15 @@ footer {
     width: 100%;
     padding-bottom: 6rem;
 
-    .player-container {
+    .player-container, .comp-container {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
 
-        div {
+        .player-select, .comp-select {
             height: 12rem;
             width: 12rem;
             border-radius: $button-d;
@@ -318,31 +328,58 @@ footer {
             background-size: auto;
             background-repeat: no-repeat;
     
-            svg {
-                scale: 0.9;
+            // svg {
+            //     scale: 0.9;
+            // }
+
+            .select-bg {
+                z-index: 0;
+                background-color: $shade-main;
+                width: 15rem;
+                height: 15rem;
             }
+        }
+
+        .select-bg {
+            position: absolute;
+            top: 2rem;
+            height: 10rem;
+            width: 10rem;
+            background-color: $shade-main;
+            border-radius: 10rem;
+        }
+
+        div[class*="pulse"] {
+            position: absolute;
+            top: 2rem;
+            height: 10rem;
+            width: 10rem;
+            background-color: $pulse-main;
+            border-radius: 10rem;
+            opacity: 0;
         }
 
         p {
             font-size: 1.5rem;
             color: #ffffff;
+            letter-spacing: 0.1rem;
         }
 
         #rock {
             border: 12px solid $rock-b;
-            box-shadow: 0px 6px $rock-a;
+            box-shadow: 0px 6px $rock-a, inset 0px 5px $shade-main;
             background-image: url(../images/icon-rock.svg);
         }
 
         #paper {
             border: 12px solid $paper-b;
-            box-shadow: 0px 6px $paper-a;
+            box-shadow: 0px 6px $paper-a, inset 0px 5px $shade-main;
             background-image: url(../images/icon-paper.svg);
         }
 
         #scissors {
             border: 12px solid $scissors-b;
-            box-shadow: 0px 6px $scissors-a;
+            box-shadow: 0px 6px $scissors-a, inset 0px 5px $shade-main;
             background-image: url(../images/icon-scissors.svg);
 
         }
@@ -371,7 +408,23 @@ footer {
         border-radius: 1rem;
         border: 1px solid #ffffff;
         background-color: #ffffff;
+        cursor: pointer;
     }
+}
+
+
+// .player-select:before {
+//     animation: ripple 2s linear infinite;
+// }
+  
+// .player-select {
+//     animation: ripple 2s linear 1s infinite;
+// }
+
+@keyframes ripple{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); opacity:1; }
+    100% { transform: scale(1.6); opacity:0; }
 }
 
 

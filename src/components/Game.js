@@ -3,7 +3,8 @@ import { ReactComponent as PaperSvg } from '../images/icon-paper.svg';
 import { ReactComponent as ScissorsSvg } from '../images/icon-scissors.svg';
 import { ReactComponent as RockSvg } from '../images/icon-rock.svg';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { gsap } from "gsap";
 
 
 function Game(props) {
@@ -35,7 +36,10 @@ function Game(props) {
         //compare picks and return score
         let gameScore = comparePicks(playerPick,compPick);
         console.log(gameScore,playerPick,compPick);
-        props.updateScore(gameScore);
+        // props.updateScore(gameScore);
+        setTimeout(() => {
+            props.updateScore(gameScore);
+        },"2000");
         //set game results for display
         setGameResult([gameScore,playerPick,compPick]);
         props.setStep(false);
@@ -83,7 +87,21 @@ function Game(props) {
         props.setStep(true);
     }
 
+    useEffect(() => {
+        let vw = window.screen.width;
+        console.log(vw);
+        if (!props.step) {
+            console.log("hello");
+            gsap.from(".player-select", {x: -vw, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
+            gsap.from(".comp-select", {x: vw, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)" });
+            gsap.from(".game-status", {y: 100, opacity: 0, duration: 1, delay: 1.5 });
+            gsap.fromTo(".pulse-1", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1});
+            gsap.fromTo(".pulse-2", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5});
+            gsap.fromTo(".pulse-3", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2});
+            gsap.fromTo(".pulse-4", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5});
+        }
 
+      },[props.step]);
 
     console.log(gameResult);
     if (props.step) {
@@ -111,16 +129,18 @@ function Game(props) {
                 <div className="game-container">
                     <div className="result-content">
                         <div className="player-container">
-                            <div id={gameResult[1]} className="player-select">
-                                {/* <PaperSvg /> */}
-                            </div>
+                            <div id={gameResult[1]} className="player-select"></div>
+                            <div className="select-bg"></div>
+                            <div className="pulse-1"></div>
+                            <div className="pulse-2"></div>
+                            <div className="pulse-3"></div>
+                            <div className="pulse-4"></div>
                             <p>YOU PICKED</p>
                         </div>
 
-                        <div className="player-container">
-                            <div id={gameResult[2]} className="comp-select">
-                                {/* <RockSvg /> */}
-                            </div>
+                        <div className="comp-container">
+                            <div id={gameResult[2]} className="comp-select"></div>
+                            <div className="select-bg"></div>
                             <p>THE HOUSE PICKED</p>
                         </div>
                     </div>
@@ -138,16 +158,18 @@ function Game(props) {
                 <div className="game-container">
                     <div className="result-content">
                         <div className="player-container">
-                            <div id={gameResult[1]} className="player-select">
-                                {/* <PaperSvg /> */}
-                            </div>
+                            <div id={gameResult[1]} className="player-select"></div>
+                            <div className="select-bg"></div>
                             <p>YOU PICKED</p>
                         </div>
 
-                        <div className="player-container">
-                            <div id={gameResult[2]} className="comp-select">
-                                {/* <RockSvg /> */}
-                            </div>
+                        <div className="comp-container">
+                            <div id={gameResult[2]} className="comp-select"></div>
+                            <div className="select-bg"></div>
+                            <div className="pulse-1"></div>
+                            <div className="pulse-2"></div>
+                            <div className="pulse-3"></div>
+                            <div className="pulse-4"></div>
                             <p>THE HOUSE PICKED</p>
                         </div>
                     </div>
@@ -165,16 +187,14 @@ function Game(props) {
                 <div className="game-container">
                     <div className="result-content">
                         <div className="player-container">
-                            <div id={gameResult[1]} className="player-select">
-                                {/* <PaperSvg /> */}
-                            </div>
+                            <div id={gameResult[1]} className="player-select"></div>
+                            <div className="select-bg"></div>
                             <p>YOU PICKED</p>
                         </div>
 
-                        <div className="player-container">
-                            <div id={gameResult[2]} className="comp-select">
-                                {/* <RockSvg /> */}
-                            </div>
+                        <div className="comp-container">
+                            <div id={gameResult[2]} className="comp-select"></div>
+                            <div className="select-bg"></div>
                             <p>THE HOUSE PICKED</p>
                         </div>
                     </div>
