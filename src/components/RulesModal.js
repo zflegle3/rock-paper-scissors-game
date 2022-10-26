@@ -16,10 +16,11 @@ function RulesModal(props) {
                     <div className="rules-header">
                         <p>RULES</p>
 
-                        <CloseSvg onClick={props.hideRules}/>
+                        {/* <CloseSvg onClick={props.hideRules}/> */}
 
                     </div>
                     <RulesSvg />
+                    <CloseSvg onClick={props.hideRules}/>
                 </div>
             </div>
         </>,

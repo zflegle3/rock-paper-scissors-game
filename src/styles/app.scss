@@ -52,23 +52,189 @@ $bg-main-a: hsl(214, 47%, 23%);
 $bg-main-b: hsl(237, 49%, 15%);
 $bg-modal: rgba(0, 0, 0, 0.45);
 
-$scissors: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
-$paper: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
-$rock: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
-$lizard: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
-$spock: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+$scissors-a: hsl(39, 89%, 49%);
+$scissors-b: hsl(40, 84%, 53%);
+$paper-a: hsl(230, 89%, 62%);
+$paper-b: rgba(86, 113, 245,1);
+$rock-a: hsl(349, 71%, 52%);
+$rock-b: hsl(349, 70%, 56%);
+// $lizard: hsl(261, 73%, 60%)
+//  hsl(261, 72%, 63%);
+// $spock: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
 
 $text-dk: hsl(229, 25%, 31%);
-$text-lt: hsl(229, 64%, 46%);
+$text-lt: #ffffff;
+$text-sub: hsl(229, 64%, 46%);
 $outline: hsl(217, 16%, 45%);
+
+$button-d: 20rem;
 
 
 .App {
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2.5rem;
+
 
     background: radial-gradient(circle at top, $bg-main-a, $bg-main-b);
 }
+
+header {
+    // width: 60%;
+    width: 100%;
+    max-width: 65rem;
+    padding: 1rem;
+    border: 3px solid $outline;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    h1 {
+        // word-break: break-all;
+        flex-grow: 1;
+        word-spacing: 9999px;
+        font-size: 2rem;
+        padding: 1rem;
+        // letter-spacing: 0.1rem;
+        color: $text-lt;
+        line-height: 1.6rem;
+    }
+
+    .score-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding: 1rem 2rem;
+        border-radius: 0.75rem;
+        margin-left: 2rem;
+
+        p:nth-child(1) {
+            font-size: 1rem;
+            color: $text-sub;
+            font-weight: 600;
+            letter-spacing: 0.2rem;
+        }
+
+        p:nth-child(2) {
+            font-size: 3.5rem;
+            color: $outline;
+            letter-spacing: 0.2rem;
+            font-weight: 700;
+        }
+
+    }
+}
+
+.game-container {
+    width: 100%;
+    flex-grow:  1;
+    // width: 100%;
+    max-width: 65rem;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+
+}
+
+
+
+.game-content {
+    position: relative;
+    // width: 100%;
+    height: auto;
+    // max-width: 65rem;
+    // height: 50%;
+
+    // background-image: url(../images/bg-triangle.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    // $button-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        position: absolute;
+        height: 12rem;
+        width: 12rem;
+        border-radius: $button-d;
+        background: #ffffff;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            scale: 0.9;
+        }
+
+    }
+
+    #paper {
+        top: -10%;
+        left: 0px;
+        border: 12px solid $paper-b;
+        box-shadow: 0px 6px $paper-a;
+    }
+
+    #scissors {
+        top: -10%;
+        right: 0px;
+        border: 12px solid $scissors-b;
+        box-shadow: 0px 6px $scissors-a;
+    }
+
+    #rock {
+        bottom: 0px;
+        // left: 50%;
+        margin-left: auto; 
+        margin-right: auto; 
+        // right: 0px;
+        border: 12px solid $rock-b;
+        box-shadow: 0px 6px $rock-a;
+    }
+
+    svg {
+        scale: 0.8;
+    }
+
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+    button {
+        font-size: 1.5rem;
+        letter-spacing: 0.3rem;
+        padding: 1rem 3.5rem;
+        border-radius: 1rem;
+        border: 1px solid white;
+        background-color: transparent;
+        color: #ffffff;
+    }
+
+
+}
+
 
 .modal-background {
     position: absolute;
@@ -77,18 +243,23 @@ $outline: hsl(217, 16%, 45%);
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    // flex-direction: row;
+    // justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    background-color: $bg-modal;
+    // background-color: $bg-modal;
+    background-color: #ffffff;
+    z-index: 1000;
 
     .modal-content {
+        flex-grow: 1;
         background-color: #ffffff;
-        padding: 3rem;
+        padding: 6rem 3rem;
         border-radius: 1rem;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         min-width: 42rem;
 
@@ -97,24 +268,24 @@ $outline: hsl(217, 16%, 45%);
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding-bottom: 4rem;
 
             p {
-                font-size: 3.5rem;
+                font-size: 3rem;
+                font-weight: 700;
                 color: $text-dk;
+                padding: 1rem;
             }
 
             svg {
                 cursor: pointer;
                 margin: 0.5rem;
+                padding: 1rem;
             }
         }
     
     }
-
-
-
 
 }
 

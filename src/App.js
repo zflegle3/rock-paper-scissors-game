@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './styles/app.scss';
 import Footer from "./components/Footer";
+import Game from "./components/Game";
 import RulesModal from "./components/RulesModal";
 import { useState } from 'react';
 
@@ -8,6 +9,8 @@ import { useState } from 'react';
 function App() {
 
   const [rulesDisplay, setRulesDisplay] = useState(false);
+  const [score, setScore] = useState(12);
+  const [step, setStep] = useState(0);
 
   const showRules = () => {
     console.log("show rules");
@@ -18,11 +21,18 @@ function App() {
     setRulesDisplay(false);
   }
 
-
   return (
     <div className="App">
-      <header></header>
-      <div className="game-container"></div>
+      <header>
+        <h1>ROCK PAPER SCISSORS</h1>
+        <div className="score-container">
+          <p>SCORE</p>
+          <p className="score-value">{score}</p>
+        </div>
+      </header>
+
+      <Game step={step}/>
+
       <Footer showRules={showRules}/>
       <RulesModal rulesDisplay={rulesDisplay} hideRules={hideRules}/>
     </div>
