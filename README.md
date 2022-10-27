@@ -14,6 +14,7 @@ This project was built as part of the [Rock, Paper, Scissors game](https://www.f
 * React JS
 * SASS
 * JavaScript
+* GSAP
 
 #### Desktop Start:
 ![demo image](https://raw.githubusercontent.com/zflegle3/rock-paper-scissors-game/main/design/original/desktop-step-1.jpg)
