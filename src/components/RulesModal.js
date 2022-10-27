@@ -6,8 +6,6 @@ function RulesModal(props) {
     //props.rulesDisplay
     //props.hideRules()
 
-
-
     if (!props.rulesDisplay) return null;
     return ReactDOM.createPortal( 
         <>

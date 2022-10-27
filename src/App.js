@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+//Styles
 import './styles/app.scss';
+//Components
 import Footer from "./components/Footer";
 import Game from "./components/Game";
 import RulesModal from "./components/RulesModal";
-import { useState } from 'react';
-
 
 function App() {
 
@@ -13,7 +13,6 @@ function App() {
   const [step, setStep] = useState(true);
 
   const showRules = () => {
-    console.log("show rules");
     setRulesDisplay(true);
   }
 
@@ -24,7 +23,6 @@ function App() {
   const updateScore = (gameResult) => {
     let scoreTemp = score;
     scoreTemp += gameResult;
-    console.log(scoreTemp,"new score");
     setScore(scoreTemp);
   }
 

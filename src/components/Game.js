@@ -1,11 +1,10 @@
+import { useState, useEffect } from 'react';
+import { gsap } from "gsap";
+//Images & SVGS
 import { ReactComponent as TriBg } from '../images/bg-triangle.svg';
 import { ReactComponent as PaperSvg } from '../images/icon-paper.svg';
 import { ReactComponent as ScissorsSvg } from '../images/icon-scissors.svg';
 import { ReactComponent as RockSvg } from '../images/icon-rock.svg';
-
-import { useState, useEffect } from 'react';
-import { gsap } from "gsap";
-
 
 function Game(props) {
     //props.step
@@ -14,19 +13,15 @@ function Game(props) {
     const [compPicks, setCompPicks] = useState(["rock","paper","scissors"]);
     const [gameResult, setGameResult] = useState([0,"player selection","computer selection"]);
 
-
     const rockIn = (e) => {
-        console.log("rock");
         playTurn("rock");
     }
 
     const paperIn = (e) => {
-        console.log("paper");
         playTurn("paper");
     }
 
     const scissorsIn = (e) => {
-        console.log("scissor");
         playTurn("scissors");
     }
 
@@ -35,12 +30,9 @@ function Game(props) {
         let compPick = getCompPick();
         //compare picks and return score
         let gameScore = comparePicks(playerPick,compPick);
-        console.log(gameScore,playerPick,compPick);
-        // props.updateScore(gameScore);
         setTimeout(() => {
             props.updateScore(gameScore);
         },"2000");
-        //set game results for display
         setGameResult([gameScore,playerPick,compPick]);
         props.setStep(false);
     }
@@ -89,27 +81,41 @@ function Game(props) {
 
     useEffect(() => {
         let vw = window.screen.width;
-        let vh = window.screen.height;
-        console.log(vw);
         if (!props.step) {
-            console.log("hello");
-            //Player & Computer Selections
-            gsap.fromTo(".player-select", {x: -vw }, {x: 0, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
-            gsap.fromTo(".comp-select", {x: vw }, {x: 0, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)"});
-            //Game Results
-            gsap.fromTo(".game-status", {opacity: 0, }, {y: 0, opacity: 1, duration: 1, delay: 1.5});
-            if (gameResult[0] !== 0) {
-            //Winner Pulse Background
-                gsap.fromTo(".pulse-1", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5});
-                gsap.fromTo(".pulse-2", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2});
-                gsap.fromTo(".pulse-3", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5});
-                gsap.fromTo(".pulse-4", 6,{scale: 0, autoAlpha:1, transformOrigin: "center center"}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 3});
+            if (vw > 760) {
+                //Player & Computer Selections
+                gsap.fromTo(".player-select", {x: -vw }, {x: 0, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
+                gsap.fromTo(".comp-select", {x: vw }, {x: 0, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)"});
+                //Spread for results
+                gsap.to(".player-container", {x: -120, duration: 1, delay: 2, ease: "elastic.out(0.2, 0.3)" });
+                gsap.to(".comp-container", {x: 120, duration: 1, delay: 2, ease: "elastic.out(0.2, 0.3)"});
+                //Game Results
+                gsap.fromTo(".game-status", {opacity: 0, }, {y: 0, opacity: 1, duration: 1, delay: 3});
+                if (gameResult[0] !== 0) {
+                //Winner Pulse Background
+                    gsap.fromTo(".pulse-1", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5, duration: 3});
+                    gsap.fromTo(".pulse-2", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2, duration: 3});
+                    gsap.fromTo(".pulse-3", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5, duration: 3});
+                    gsap.fromTo(".pulse-4", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 3, duration: 3});
+                }
+            } else {
+                //Player & Computer Selections
+                gsap.fromTo(".player-select", {x: -vw }, {x: 0, duration: 1, delay: 0.5, ease: "elastic.out(0.2, 0.3)" });
+                gsap.fromTo(".comp-select", {x: vw }, {x: 0, duration: 1, delay: 1, ease: "elastic.out(0.2, 0.3)"});
+                //Game Results
+                gsap.fromTo(".game-status", {opacity: 0, }, {y: 0, opacity: 1, duration: 1, delay: 1.5});
+                if (gameResult[0] !== 0) {
+                //Winner Pulse Background
+                    gsap.fromTo(".pulse-1", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 1.5, duration: 3});
+                    gsap.fromTo(".pulse-2", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2, duration: 3});
+                    gsap.fromTo(".pulse-3", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 2.5, duration: 3});
+                    gsap.fromTo(".pulse-4", {scale: 0, autoAlpha:1, transformOrigin: "center center", duration: 3}, {scale: 3, autoAlpha: 0, repeat: -1, delay: 3, duration: 3});
+                } 
             }
         }
 
       },[props.step]);
 
-    console.log(gameResult);
     if (props.step) {
         return (
             <div className="game-container">
