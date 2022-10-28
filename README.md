@@ -2,6 +2,8 @@
 
 [Live Demo Here!](https://zflegle3.github.io/rock-paper-scissors-game/)
 
+[Compare Solution with Design Here!](https://www.frontendmentor.io/solutions/responsive-rock-paper-scissors-app-react-sass-javascript-oIuhROoMAQ)
+
 ## Summary
 
 This project was built as part of the [Rock, Paper, Scissors game](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH) challenge from Front End Mentor. The objective of this project was to copy the source design file as closely as possible and to make a fully functioning rock paper scissors game web application.
